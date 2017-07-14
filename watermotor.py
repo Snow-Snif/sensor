@@ -1,20 +1,20 @@
 import RPi.GPIO as GPIO
 import time
-import sys
 
-pwn_pin = 16
 GPIO.setmode(GPIO.BCM)
-GPIO.setmode(16,GPIO.OUT)
+IN1 = 20
+IN2 = 21
+GPIO.setmode(IN1,GPIO.OUT)
+GPIO.setmode(IN2,GPIO.OUT)
+PWM_freq = 200
+PWM1 = GPIO.PWM(IN1,PWM_freq)
+PWM2 = GPIO.PWM(IN2,PWM_freq)
 
-pwm_led = GPIO.PWM(pwn_pin,500)
-pwm_led.stat(100)
+PWM1.start(0)
+PWM2.start(0)
 
-try:
-    while True:
-        duty = 80
-        pwm_led.ChangeDutyCycle(duty)
-except KeyboardInterrupt:
-    print("stop")
-    sys.exit(0)
-
-
+while True:
+    PWM1.ChangeDutyCycle(100)
+    PWM2.ChangeDutyCycle(0)
+    time.sleep(0.05)
+GPIO.cleanup()

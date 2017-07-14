@@ -7,10 +7,8 @@ import datetime
 
 spi = spidev.SpiDev()
 spi.open(0, 0)
-
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
-GPIO.cleanup()
 instance = dht11.DHT11(pin=4)
 
 def ReadChannel(channel):
@@ -37,4 +35,5 @@ while True:
         print "--------------------------------------------"
 
     time.sleep(5)
+GPIO.cleanup()
 
