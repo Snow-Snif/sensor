@@ -32,6 +32,7 @@ def convertVolts(data,places):
 moisture2_pin = 2
 delay = 1
 
+
 while True:
     data = ReadChannel(2)
     volts = convertVolts(data, 5)
